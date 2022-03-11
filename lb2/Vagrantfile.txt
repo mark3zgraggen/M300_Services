@@ -3,8 +3,10 @@ Vagrant.configure("2") do |config|
 
 
 # General Vagrant VM configuration
-config.vm.box = "ubuntu/zesty64"
+config.vm.box = "ubuntu/bionic64"
+config.vm.network :public_network, :bridge => "eth0", ip: "192.168.1.10"
 config.vm.network :forwarded_port, guest: 3306, host: 3306
+config.vm.network :forwarded_port, guest: 80, host: 3306
 
 
 
@@ -14,10 +16,10 @@ vb.customize [
 'modifyvm', :id,
 '--natdnshostresolver1', 'on',
 '--memory', '512',
-'--cpus', '2'
+'--cpus', '4'
 ]
 end
 
 
 
-#config.vm.provision :shell, path: "bootstrap.sh"
+# config.vm.provision :shell, path: "bootstrap.sh"

@@ -2,6 +2,7 @@
 DBHOST=localhost
 DBNAME=m300
 DBUSER=mzgraggen
+DBROOT=adminmz
 DBPASSWD=dinitante
 
 apt-get update
@@ -18,6 +19,7 @@ apt-get -y install mysql-server phpmyadmin
 
 mysql -uroot -p$DBPASSWD -e "CREATE DATABASE $DBNAME"
 mysql -uroot -p$DBPASSWD -e "grant all privileges on $DBNAME.* to '$DBUSER'@'%' identified by '$DBPASSWD'"
+mysql -uroot -p$DBPASSWD -e "grant all privileges on $DBNAME.* to '$DBROOT'@'%' identified by '$DBPASSWD'"
 
 cd /vagrant
 

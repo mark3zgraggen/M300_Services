@@ -6,11 +6,11 @@
 
 - [Einführung](#einführung)
 - [Grafische Übersicht des Services](#grafische)
-- [Quellenangaben](#quellenangaben)
 - [Vagrantfile](#vagrantfile)
 - [Bootstrap.sh](#bootstrap)
 - [Service Anwendung](#anwendung)
 - [Service testen](#testen)
+- [Quellenangaben](#quellenangaben)
 
 ---
 
@@ -27,11 +27,6 @@ Mein Projekt ist, dass man ein MySQL automatisch einrichten lassen kann. Damit e
 
 ---
 
-# Quellenangaben
-
-Da ich noch nie so ein Projekt gemacht habe, habe ich mir im Internet eine Anleitung rausgesucht. Diese findet man unter diesem Link [HIER](https://www.yourtechy.com/technology/mysql-server-vagrant-virtualbox/).
-
-Dies möchte ich Ihnen aber weiter unten genauer erklären.
 
 # Vagrantfile
 
@@ -66,3 +61,47 @@ Hier unten finden Sie noch mein Vagrantfile:
 | db.vm.network | Da definiere ich den Port auf welchen darauf folgend die VM zugreift. In diesem Zusammenhang wäre es für MySQL Port 3306 und für die Webapplikation phpmyadmin Port 80.  |
 | db.vm.provision | In diesem Schritt erlaube ich die Variation von einem Shell Skript, in meinem Fall das bootstrap.sh file, nachdem das Guest OS gebootet hat.
 | config.vm.provider :virtualbox do vb |  Hier definiere ich den Provider der VM, hierbei Virtualbox. Außerdem habe ich noch Anpassungen gemacht, z.b mehr RAM und CPUs.  |
+
+---
+
+<a name="bootstrap"></a>
+## Bootstrap.sh
+
+ 
+    DBHOST=localhost
+    DBNAME=m300
+    DBUSER=mzgraggen
+    DBROOT=adminmz
+    DBPASSWD=dinitante
+
+    apt-get update
+
+    debconf-set-selections <<< "mysql-server mysql-server/root_password password $DBPASSWD"
+    debconf-set-selections <<< "mysql-server mysql-server/root_password_again password $DBPASSWD"
+    debconf-set-selections <<< "phpmyadmin phpmyadmin/dbconfig-install boolean true"
+    debconf-set-selections <<< "phpmyadmin phpmyadmin/app-password-confirm password $DBPASSWD"
+    debconf-set-selections <<< "phpmyadmin phpmyadmin/mysql/admin-pass password $DBPASSWD"
+    debconf-set-selections <<< "phpmyadmin phpmyadmin/mysql/app-pass password $DBPASSWD"
+    debconf-set-selections <<< "phpmyadmin phpmyadmin/reconfigure-webserver multiselect none"
+
+    apt-get -y install mysql-server phpmyadmin
+
+    mysql -uroot -p$DBPASSWD -e "CREATE DATABASE $DBNAME"
+    mysql -uroot -p$DBPASSWD -e "grant all privileges on $DBNAME.* to '$DBUSER'@'%' identified by '$DBPASSWD'"
+    mysql -uroot -p$DBPASSWD -e "grant all privileges on $DBNAME.* to '$DBROOT'@'%' identified by '$DBPASSWD'"
+
+    cd /vagrant
+
+    sudo sed -i "s/.*bind-address.*/bind-address = 0.0.0.0/" /etc/mysql/mysql.conf.d/mysqld.cnf
+
+    sudo service mysql restart
+
+    service apache2 restart
+
+| Code| Beschreibung|
+| --------------| -----------------|
+
+
+# Quellenangaben
+
+Da ich noch nie so ein Projekt gemacht habe, habe ich mir im Internet eine Anleitung rausgesucht. Diese findet man unter diesem Link [HIER](https://www.yourtechy.com/technology/mysql-server-vagrant-virtualbox/).

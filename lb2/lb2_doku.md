@@ -105,6 +105,19 @@ Hier unten finden Sie noch mein Vagrantfile:
 | apt-get -y install mysql-server phpmyadmin | In diesem Schritt wird der mysql Service bzw. mysql-server und phpmyadmin installiert. |
 | sudo sed -i "s/.*bind-address.*/bind-address = 0.0.0.0/" /etc/mysql/mysql.conf.d/mysqld.cnf | Die mysql konfig wird nun ergänzt, so dass man auf die Datenbank per Remote zugreifen kann. |
 
+---
+<a name="anwendung"></a>
+# Service Anwendung & testen
+
+Damit wir den Service starten können, muss man einige Schritte beachten. Diese werden hier unten beschrieben.
+
+1. Folgenden Befehl auf Git Bash ausführen: `vagrant up`
+2. Sobald die VM aufgesetzt wurde folgenden Link aufrufen: http://localhost:3306/phpmyadmin
+3. Sich mit folgenden Anmeldedaten anmelden:
+   - Benutzername: adminmz oder mzgraggen
+   - Passwort:     dinitante
+
+![Anmeldefenster](Bilder/Login.jpg)
 
 # Quellenangaben
 

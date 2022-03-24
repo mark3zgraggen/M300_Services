@@ -119,6 +119,10 @@ Damit wir den Service starten können, muss man einige Schritte beachten. Diese 
 
 ![Anmeldefenster](Bilder/Login.jpg)
 
+4. Nun sieht man auf der Seite, dass es die Datenbank m300 erfolgreich erstellt hat.
+
+![Database](Bilder/phpmyadmin.PNG)
+
 # Quellenangaben
 
 Da ich noch nie so ein Projekt gemacht habe, habe ich mir im Internet eine Anleitung rausgesucht. Diese findet man unter diesem Link [HIER](https://www.yourtechy.com/technology/mysql-server-vagrant-virtualbox/).

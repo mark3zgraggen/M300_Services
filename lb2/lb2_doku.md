@@ -123,6 +123,10 @@ Damit wir den Service starten können, muss man einige Schritte beachten. Diese 
 
 ![Database](Bilder/phpmyadmin.PNG)
 
+5. Auf dem unten aufgelisteten Bild, sieht man noch, welcher User zur Zeit eingeloggt ist und noch einige andere nützlichen informationen zu der Datenbank.
+
+![Database_info](Bilder/database_info.PNG)
+
 # Quellenangaben
 
 Da ich noch nie so ein Projekt gemacht habe, habe ich mir im Internet eine Anleitung rausgesucht. Diese findet man unter diesem Link [HIER](https://www.yourtechy.com/technology/mysql-server-vagrant-virtualbox/).

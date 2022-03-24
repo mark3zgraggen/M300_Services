@@ -30,7 +30,9 @@ Mein Projekt ist, dass man ein MySQL automatisch einrichten lassen kann.
 # Quellenangaben
 
 Da ich noch nie so ein Projekt gemacht habe, habe ich mir im Internet eine Anleitung rausgesucht. Diese findet man unter diesem Link [HIER](https://www.yourtechy.com/technology/mysql-server-vagrant-virtualbox/).
-Da ich nicht alles eins zu eins übernehmen wollte, habe ich einige Anpassungen am Skript vorgenommen.
+Da ich nicht alles eins zu eins übernehmen wollte, habe ich einige Anpassungen am Skript vorgenommen.Damit es angenehmer ist die MySQL-Datenbank und ihre User zu verwalten und zu konfigurieren
+habe ich mich entschieden noch einen GUI mit einzubinden. Zu diesem Zweck verwenden ich das webbasierte 
+phpmyadmin.
 
 Dies möchte ich Ihnen aber weiter unten genauer erklären.
 
@@ -60,4 +62,10 @@ Hier unten finden Sie noch mein Vagrantfile:
       end
     end
 
-
+| Code| Beschreibung|
+| --------------| -----------------|
+| Vagrant.configure("2") do config | Diese Zeile im Code beschreibt die API Ausführung, hierbei die Menge 2, vom Vagrantfile. In diesem Block beschreibe ich die VM Konfigurationen die ich vornehmen werde.  |
+| config.vm.box | Hier habe ich mich für ein Betirebssystem entscheiden, welches ich auf der VM laufen haben will.  |
+| db.vm.network | Da definiere ich den Port auf welchen darauf folgend die VM zugreift. In diesem Zusammenhang wäre es für MySQL Port 3306 und für die Webapplikation phpmyadmin Port 80.  |
+| db.vm.provision | In diesem Schritt erlaube ich die Variation von einem Shell Skript, in meinem Fall das bootstrap.sh file, nachdem das Guest OS gebootet hat.
+| config.vm.provider :virtualbox do vb |  Hier definiere ich den Provider der VM, hierbei Virtualbox. Außerdem habe ich noch Anpassungen gemacht, z.b mehr RAM und CPUs.  |

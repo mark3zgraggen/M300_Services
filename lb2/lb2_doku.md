@@ -8,8 +8,7 @@
 - [Grafische Übersicht des Services](#grafische)
 - [Vagrantfile](#vagrantfile)
 - [Bootstrap.sh](#bootstrap)
-- [Service Anwendung](#anwendung)
-- [Service testen](#testen)
+- [Service Anwendung & testen](#anwendung)
 - [Quellenangaben](#quellenangaben)
 
 ---
@@ -100,6 +99,11 @@ Hier unten finden Sie noch mein Vagrantfile:
 
 | Code| Beschreibung|
 | --------------| -----------------|
+| DBROOT=adminmz | Als aller erstes habe ich die Variabeln definiert, welche ich in einem späteren Verlauf im Skript verwendet habe. Diese Variabel wäre nun für den Root User.  |
+| debconf-set-selections ... | Die gleichen Angaben müsste man auch angeben, wenn man den Service manuell installiern würde. Dies wird hier aber automatisch übernommen. |
+| mysql -uroot -p$DBROOTPASSWD -e ... | Hier mache ich die Konfigurationen auf der Datenbank bzw. ich erstelle die Datenbanken. |
+| apt-get -y install mysql-server phpmyadmin | In diesem Schritt wird der mysql Service bzw. mysql-server und phpmyadmin installiert. |
+| sudo sed -i "s/.*bind-address.*/bind-address = 0.0.0.0/" /etc/mysql/mysql.conf.d/mysqld.cnf | Die mysql konfig wird nun ergänzt, so dass man auf die Datenbank per Remote zugreifen kann. |
 
 
 # Quellenangaben

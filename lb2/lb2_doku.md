@@ -17,7 +17,7 @@
 # Einführung
 
 Wir haben im Modul 300 den Auftrag bekommen, ein eigenes Projekt mit Vagrant zu gestallten.
-Mein Projekt ist, dass man ein MySQL automatisch einrichten lassen kann.
+Mein Projekt ist, dass man ein MySQL automatisch einrichten lassen kann. Damit es angenehmer ist die MySQL-Datenbank und ihre User zu verwalten und zu konfigurieren habe ich mich entschieden noch einen GUI mit einzubinden. Zu diesem Zweck verwenden ich das webbasierte phpmyadmin.
 
 ---
 <a name="grafische"></a>
@@ -30,9 +30,6 @@ Mein Projekt ist, dass man ein MySQL automatisch einrichten lassen kann.
 # Quellenangaben
 
 Da ich noch nie so ein Projekt gemacht habe, habe ich mir im Internet eine Anleitung rausgesucht. Diese findet man unter diesem Link [HIER](https://www.yourtechy.com/technology/mysql-server-vagrant-virtualbox/).
-Da ich nicht alles eins zu eins übernehmen wollte, habe ich einige Anpassungen am Skript vorgenommen.Damit es angenehmer ist die MySQL-Datenbank und ihre User zu verwalten und zu konfigurieren
-habe ich mich entschieden noch einen GUI mit einzubinden. Zu diesem Zweck verwenden ich das webbasierte 
-phpmyadmin.
 
 Dies möchte ich Ihnen aber weiter unten genauer erklären.
 
